@@ -58,7 +58,7 @@ def amend_routing_tables (packet, returnaddr, unsigned_routing_dict, signed_rout
         unsigned_routing_dict[originid] = {'peer':returnaddr}
         unsigned_destination_list.append(originid)
         print ('update successful')
-        if len(unsigned_destination_list)>NUMBEROFKEYSTOSAVE:
+        if len(unsigned_destination_list)>settings['NUMBEROFKEYSTOSAVE']:
             print ('unsigned_destination_list too long, will trim along with unsigned_routing_dict')
             unsigned_routing_dict.Remove(unsigned_destination_list[0])
             unsigned_destination_list.pop(0)
