@@ -516,9 +516,12 @@ def data_or_packet_processor(data_or_packet_bytes, returnaddr, TCPIPcommunicatio
     if packet_dict['destination']['id']==settings['LOCALID']: #this datapakcet is a response to our client's prior request
         print ('packet_dictdestinationid==settings[LOCALID]:this datapakcet is a response to our clients prior request')
         #check our dictionary to see if origin of packet is the same from whom data was initially requested
-        (destination_port, expectedoriginid) = dict_of_openconnectionsTCP_IP[packet_dict['destination']['connection']] 
-        print ('expectedoriginid:  ',expectedoriginid)
-        print (packet_dict['origin']['id'])
+        try:
+            (destination_port, expectedoriginid) = dict_of_openconnectionsTCP_IP[packet_dict['destination']['connection']] 
+            print ('expectedoriginid:  ',expectedoriginid)
+            print (packet_dict['origin']['id'])
+        except:
+            print('although destination id ==settings[localid], packet_dict[destination][connection] was not found in dict_of_openconnectionsTCP_IP. this packet will be discarded. will return to listener from data_or_packet processor')
         if expectedoriginid != packet_dict['origin']['id']:
             print ('there was an attempt to access a port by a service that was not requested')
             return
