@@ -1,0 +1,3 @@
+Thank you for choosing p2p.Ninja for your peer to peer networking needs. This software suite is intended to be installed on raspberry pi 3 (with dual network interfaces : Eth0 and Wlan0). If you recieved a 'zipped' p2p.Ninja folder, please extract the files into a folder where you would like the program to reside.
+
+please review License_terms_and_conditions.txt. If agreeable, please execute the file - Install_p2p.Ninja.sh . (You may need to right click it and select properties and then make sure 'anybody' can execute it). Visit p2p.Ninja (or p2pNinja.com) for feedback and support. 

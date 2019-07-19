@@ -1,0 +1,147 @@
+The browser has an extension installed on itself that redirects all addresses of the p2pninja format to an in network ip address 192.168.40.1
+
+for example, when user types the following in the url field and enters:
+
+http://8293470928470918274.83sc4.request.p2pninja/inthisfolder/thisresource
+
+the browser redirects the request as follows :
+
+192.168.40.1/8293470928470918274.83sc4.request/inthisfolder/thisresource
+
+the first number  number (8293470928470918274) represents public key of destination. the second number (83sc4) represents a routing aid long. the third number (request) represents the type of request that this url is.  first field is mandatory, the second  and third is not. however, if you want to define the third number, you have to have another second number. otherwise the second value (even if last is assumed to be the routing aid). 
+
+type of request : request- direct request to server
+                : hash - request for  a stored page with hash value as mentioned in the resource path.
+                : broadcast - declaration of node
+
+******************************************************************************************************
+
+a raspbian pi is present on the local netwrok with ip address 192.168.40.1 and therefore gets the above request, it converts the above url request to a packet for transmission to other pi's. we use python 3 pre-installed on raspbian and avoid any imported libraries from the internet. 
+
+
+'Packet' is a reserved variable/name for a dictionary of the format as outlined below. packet_dict is a python dictionary object of this nature and packet_byte is a python byte object of the same nature.
+
+{
+'destination': {'id':integervalue, routingaid : 'stringtype' ,connection:JSONserializablestring (ip+port info mandatorymaybefalse), 'publickey': True}, 
+'hopcount':1 (integertype), 
+'UTC' : timeatorigin, 
+'version' : 1,
+'origin':{'id':numerical,routingaid:20digits(non mandatory), connection:JSONserializable(ip+port info nonmandatory), 'publickey':False, exponent:(keyexponentnotmandatory},
+'signaturebyorigin' : 0, 
+'datastring':repr(bytestypedata), 
+'type':packettype #(seebelow)
+'anyotherparametertosign':{}
+}
+                         
+
+'data' is a reserved variable that is always bytes types. 
+'datastring' is string type and is a repr function of bytes type data to be sent
+timeatorigin is a floating point integer denoting seconds elapsed since epoch.
+packettype : request   : represents a packet intended for specific recipient 
+packettype : broadcast : represents a packet for broadcast for location declaration on network. 
+packettype : hash      : request for  a stored page with hash value as mentioned in the resource path.
+
+
+packets are transmitted over the netwrok in bytes format after json dumping and should be in a format that allows reproducton on jsonloading.
+since the 'connection' parameter is for the ultimate consumption by the node that assigns it a value, only requirement is that it be JSON serializable for transmission over the network.
+
+*************************************************************************************************************
+unsigned_routing_dict={destinationid1:{'peer':'IPADDRESS1+port info'}, destinationid2:{'peer':'IPADDRESS2+portinfo'},... }
+signed_routing_dict={destinationid1:{'peer':'IPADDRESS1+portinfo','time':timerecieved}, destinationid2:                                                                   {'peer':'IPADDRESS2+portinfo','time':timerecieved},...}
+unsigned_destination_list = [destinationid1, destinationid2, destinationid3, ...]
+signed_destination_list   = [destinationid1, destinationid2, destinationid3, ...]
+
+{ 
+}
+
+**********************************************************************************************************************
+packet to be transmitted over network is first JSON.dump into string.
+then this string is .encode(encoding='UTF-8',errors='strict') in python3
+
+
+*******************************************************************************************************************
+hash of packet is always calculated as follows in python:
+
+def hash_of(packet):
+    
+    def convert_to_byte (packetvalue):
+        anything_to_string = json.dumps(packetvalue, sort_keys=True)
+        anything_to_bytes = (anything_to_string).encode('utf-8')
+        return (anything_to_bytes)
+    
+    import hashlib
+    import sys
+    
+    m = hashlib.sha256()
+    parameters =['destination', 'UTC', 'origin', 'datastring', 'anyotherparametertosign']
+    for parameter in parameters:
+        m.update(convert_to_byte(packet[parameter]))
+    hashvalue = m.digest()
+    hashinteger=int.from_bytes(hashvalue, byteorder=sys.byteorder) 
+    print ('hashinteger reported from the hash_of function:', hashinteger)
+    return hashinteger
+
+the hash is then divided by the publickey of the signor. the remainder is then signed by the signor
+
+if packet['origin']['publickey'] is True:
+      hash_value = hash_of(packet)
+      value_to_compare = hash_value%(packet['origin']['id'])
+      valuethatwassigned = pow(packet['signaturebyorigin'], packet['origin']['exponent'],packet['origin']['id'])
+      if value_to_compare!= valuethatwassigned :
+        print ('signature not true')
+        return False
+      else:
+        print('signature is true')
+###############################################################################################################
+
+packet conversion from dict to byte like object and back :
+
+
+def packet_dict_to_byte (packet_dict):
+    packet_to_string = json.dumps(packet_dict)
+    packet_byte = (packet_to_string).encode('utf-8')
+    return (packet_byte) #data
+
+def packet_byte_to_dict(packet_byte):
+    data_to_string = packet_byte.decode('utf-8')
+    packet_dict = json.loads(data_to_string)
+    return (packet_dict) # data/bytes
+
+#####################################################################################################
+
+the data for/from client may be converted to string/byte format as follows
+
+def databyte_to_datastring(databyte):
+    return (repr(databyte))
+
+
+def datastring_to_databyte(datastring):
+    return(ast.literal_eval(datastring))
+########################################################################################################
+url is interpreted as follows by python:
+
+def str2int(s):
+    chars = "".join(str(n) for n in range(10)) + "bcdfghjklmpqrvwxyz"
+    # we have saved the five vowels and TNS for costumization
+    i = 0
+    for c in reversed(s):
+        if c in chars:
+            i *= len(chars)
+            i += chars.index(c)
+        else:
+            pass
+    return i
+
+def int2str(i):
+    chars = "".join(str(n) for n in range(10)) + "bcdfghjklmpqrvwxyz"
+    # we have saved the five vowels and TNS for costumization
+    s = ""
+    while i:
+        s += chars[i % len(chars)]
+        i //= len(chars)
+    return s
+
+
+
+basically - the webadres can have any/all/as many of the digits and english small case letters except a,e,i,o,u,s,t,n
+if there are any ohter characters or above excluded characters, they are simply ignored by the algorithm. this allows creating of webaddresses that are more easily memorable by a person.
