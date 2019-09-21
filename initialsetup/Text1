@@ -1,0 +1,8 @@
+Thank you for choosing p2p.Ninja! version 2.0 beta
+--------------------------------------------------
+Copyright (C) <2019>  <Hersh Goel>
+
+We aim to build an information network that cannot be shut down by external forces. This program is licenced under the GNU General Public License. You should have received a copy of the GNU General Public License (version 3) along with this program (see License_terms_and_conditions.txt).  If not, see <https://www.gnu.org/licenses/>. If you do not agree to the applicable license (or are unable to review it), please do not proceed with installation and delete all copies of this software with you. At a minimum, this program comes with ABSOLUTELY NO WARRANTY. 
+
+We will attempt to install the p2p.Ninja Gateway/Router on your computer. Please note that this program is intended for installation on a 'fresh install' of raspbian NOOBS_v2_9_0; p2p.Ninja is experimental at this time and should only be installed and executed in an environment where data confidentiality and safety are dispensable. There is no warranty of any kind - express or implied. p2p.Ninja network(s) is/are not encrypted. Proceeding with installation will delete prior network settings and passwords. We do not warrant our ability to restore your system settings afterwards. Superuser privileges are needed to complete this installation. Visit www.p2p.Ninja on your webbrowser to check out how to videos, get support for installation and giving feedback and support to us.
+

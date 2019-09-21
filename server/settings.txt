@@ -1,0 +1,2 @@
+{"p2p address": "43f", "RSA_exponent": 17, "RSA_d": 413, "default_file_to_send": "./website/home", 'Are_we_a_public_key': 1, "broadcast interval":10}
+

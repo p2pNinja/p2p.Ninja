@@ -1,0 +1,547 @@
+<head>
+  <title>p2p.Ninja !!</title>
+</head>
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2  align="center">Thank you for choosing <a href="http://www.p2p.Ninja">p2p.Ninja</a>!</h2>
+<p align="center">The only scalable peer-to-peer network</p>
+<p align="justify"><br />This is your local p2p.Ninja gateway. This page can be accessed by typing http://settings.p2p in your address bar. To change the various settings here, you will need to know the password for your device. The default password for your gateway is : p2p.Ninja (case sensitive, no spaces).</p>
+
+
+
+
+
+<form action="http://settings.p2p/" target="_blank">
+  <fieldset>
+    <legend>Check current settings of your Gateway:</legend>
+     <select name="PARAMETER">
+                       <option value="current_settings">View current settings of Gateway</option>
+                       </select>
+      
+     Password (current): <input type="text" name="PASSWORD" ><br>
+     <input type="submit" value="View settings">
+  </fieldset>
+  </form> 
+    
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+function mytimesignal() {
+  
+  var n = (new Date).getTime();
+  document.getElementById("demo").innerHTML = 'Time signal sent as follows : ' + n.toString() +' or (in human readable form):'+ new Date(n);
+  
+  var PASSWORD =  document.getElementById("PASSWORD").value;
+  var url = 'http://settings.p2p/?PARAMETER=TIME_SIGNAL&set_to='+n.toString() +'&PASSWORD='+ PASSWORD;
+  window.open(url,'_blank');
+}
+</script>
+
+<fieldset>
+	<legend>Send reference time-signal to your Gateway                        :</legend>
+
+     Password (current): <input type="text" name="PASSWORD" id="PASSWORD">
+     <button onclick="mytimesignal()">Send time signal</button>
+     <div id="demo"> </div>
+     
+    
+  </fieldset> 
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+function start_server() {
+  
+  var n = (new Date).getTime();
+  document.getElementById("demo").innerHTML = 'Server started at: ' + n.toString() +' or (in human readable form):'+ new Date(n);
+  
+  var PASSWORD =  document.getElementById("PASSWORD_start").value;
+  var url = 'http://settings.p2p/?PARAMETER=start_server&set_to=1&PASSWORD='+ PASSWORD;
+  window.open(url,'_blank');
+}
+</script>
+
+<fieldset>
+  <legend> Start server function of your p2p.Ninja node!</legend>
+
+     Password (current): <input type="text" name="PASSWORD" id="PASSWORD_start">
+     <button onclick="start_server()">Start Server</button>
+     <div id="demo"> </div>
+     
+    
+  </fieldset> 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+function stop_server() {
+  
+  var n = (new Date).getTime();
+  document.getElementById("demo").innerHTML = 'Server stop signal sent at: ' + n.toString() +' or (in human readable form):'+ new Date(n);
+  
+  var PASSWORD =  document.getElementById("PASSWORD_stop").value;
+  var url = 'http://settings.p2p/?PARAMETER=stop_server&set_to=1&PASSWORD='+ PASSWORD;
+  window.open(url,'_blank');
+}
+</script>
+
+<fieldset>
+  <legend> Attempt to stop the server function of your p2p.Ninja node!</legend>
+
+     Password (current): <input type="text" name="PASSWORD" id="PASSWORD_stop">
+     <button onclick="stop_server()">Stop Server</button>
+     <div id="demo"> </div>
+     
+    
+  </fieldset> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="http://settings.p2p/" target="_blank">
+  <fieldset>
+    <legend>Edit password:</legend>
+     <select name="PARAMETER">
+                       <option value="PASSWORD">Change Gateway Password</option>             
+                       </select>
+      Desired New Password: <input type="text" name="set_to" >
+     Password (current): <input type="text" name="PASSWORD" ><br>
+     <input type="submit" value="Change Setting">
+    
+  </fieldset>
+</form> 
+
+
+
+ <form action="http://settings.p2p/" target="_blank">
+  <fieldset>
+    <legend>Edit routing parameters:</legend>
+     Setting to change: <select name="PARAMETER">
+                       <option value="LOCALID">LOCALID</option>
+                       <option value="LOCALROUTINGAID">LOCALROUTINGAID</option>
+                       <option value="LOCALIDPUBLICKEY">LOCALIDPUBLICKEY</option>
+                       <option value="LOCALKEYEXPONENT">LOCALKEYEXPONENT</option>
+                       <option value="ACCEPTABLEHOPCOUNT">ACCEPTABLEHOPCOUNT</option>
+                       <option value="NUMBEROFKEYSTOSAVE">NUMBEROFKEYSTOSAVE</option>
+                       <option value="MINIMUMINTERVALBETWEENBROADCASTS">MINIMUMINTERVALBETWEENBROADCASTS</option>
+                       <option value="NUMBEROFCONNECTIONSTOSAVE">NUMBEROFCONNECTIONSTOSAVE</option>
+                       <option value="ACCEPTABLEROUTINGPACKETSIZE">ACCEPTABLEROUTINGPACKETSIZE</option>
+                       <option value="ACCEPTABLEBROADCASTPACKETSIZE">ACCEPTABLEBROADCASTPACKETSIZE</option>
+                       <option value="TIMEDELAYACCEPTABLE">TIMEDELAYACCEPTABLE</option>
+                       </select> <br>
+    Value desired: <input type="text" name="set_to" >
+    Password (current): <input type="text" name="PASSWORD" ><br>
+      
+    <input type="submit" value="Change Setting">
+  </fieldset>
+</form> 
+
+
+<form action="http://settings.p2p/" target="_blank">
+  <fieldset>
+    <legend>Edit network/connection identifiers:</legend>
+     Setting to change: <select name="PARAMETER">
+                       <option value="SELF_IP_PEER">p2p Wifi IP address</option>
+                       <option value="SELF_PORT_PEER">port at which p2p.Ninja will operate</option>
+                       </select> <br>
+    Value desired: <input type="text" name="set_to" >
+     Password (current): <input type="text" name="PASSWORD" ><br>
+      <input type="submit" value="Change Setting">
+  </fieldset>
+</form> 
+
+<form action="http://settings.p2p/" target="_blank">
+  <fieldset>
+    <legend>Add/Remove peers to connect to over Wifi:</legend>
+     Setting to change: <select name="PARAMETER">
+                       <option value="ADD_PEER">ADD_PEER</option>
+                       <option value="REMOVE_PEER">REMOVE_PEER</option>
+                        </select> <br>
+    IP address: <input type="text" name="set_to" > Port number: <input type="text" name="set_to2" >
+     Password (current): <input type="text" name="PASSWORD" ><br>
+    
+    <input type="submit" value="Change Setting">
+  </fieldset>
+</form> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function settingurlCreator() {
+  
+  var PASSWORD =  document.getElementById("fileuploadpassword").value;
+  var url = 'fileupload/?PARAMETER=serversetting_upload&set_to=1'+'&PASSWORD='+ PASSWORD;
+  document.getElementById('serversettingupload').action = url;
+}
+</script>
+
+<fieldset>
+<legend>Change the Address/settings of your server:</legend>
+<form id="serversettingupload" enctype = "multipart/form-data" method = "post" onSubmit = "return settingurlCreator()">
+Upload settings.txt (no other file name is accepted): <input id="fileupload" name = "myfile"  value = "fileupload" type = "file"/>
+password<input id = "fileuploadpassword" name = "password" type="text">
+<input type= "submit" value= "submit" id="submit"/> Warning!: this will over-write your current settings without any back up being created.
+</form>
+</fieldset>
+
+
+
+
+<script type="text/javascript">
+function websiteurlCreator() {
+  
+  var PASSWORD =  document.getElementById("websiteuploadpassword").value;
+  var url = 'fileupload/?PARAMETER=website_upload&set_to=1'+'&PASSWORD='+ PASSWORD;
+  document.getElementById('websiteupload').action = url;
+}
+</script>
+
+<fieldset>
+<legend>Upload a website to your server:</legend>
+<form id="websiteupload" enctype = "multipart/form-data" method = "post" onSubmit = "return websiteurlCreator()">
+Upload website.zip (no other file name is accepted): <input id="fileupload" name = "myfile"  value = "fileupload" type = "file"/>
+password<input id = "websiteuploadpassword" name = "password" type="text">
+<input type= "submit" value= "submit" id="submit"/> Warning!: this will over-write your current website without any back up being created.
+</form>
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+function str2int() {
+
+
+   var s  = document.getElementById("address_string").value;
+   var chars = "0123456789bcdfghjklmpqrvwxyz";
+    //# we have saved the five vowels and TNS for costumization
+    var i = 0;
+  
+  //var reverseds = s.split("").reverse().join("");
+    for (const c of s) {
+    console.log(c)
+
+        if (chars.includes(c)){
+            i *= chars.length;
+            i += chars.indexOf(c);}
+        else{};
+    }
+        
+    document.getElementById("demo2").innerHTML = i;
+}
+</script>
+<fieldset>
+  <legend>Use to following fuction to calculate the numeric key represented by a alphanumeric address :</legend>
+  Address in alphanumeric form : <input type="text" name="address_string" id="address_string">
+  <button onclick="str2int()">calculate</button> (This does not affect router settings)
+  <div id="demo2"> </div>
+</fieldset>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+function int2str() {
+
+
+   var i  = (document.getElementById("address_int").value);
+   var chars = "0123456789bcdfghjklmpqrvwxyz";
+    //# we have saved the five vowels and TNS for costumization
+    var s='';
+
+    while (i > 0) {
+  s += chars.charAt(i % chars.length);
+  i = Math.floor(i/(chars.length)) 
+  
+                   } 
+   var reverseds = s.split("").reverse().join("");
+   var x = "";
+        var checkbox = document.getElementById("love");
+          if (checkbox.checked == true){
+    x = " ~";
+  } else {
+    x = " ";
+  }
+    document.getElementById("string").innerHTML = 'Your alphanumeric address =' + x + reverseds;
+}
+</script>
+<fieldset>
+<legend>The following fuction to calculates the alphanumeric address that can represent a numeric key:</legend>
+
+Key value (Give a positive integer) : <input type="number" name="address_int" id="address_int"><br>
+<input type="checkbox" name="love" value="~" id="love">This is not a RSA cryptographic public key   
+<button onclick="int2str()">calculate</button> (This does not affect router settings)
+<div id="string"> </div>
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr />
+
+
+<h4>A brief review of how you may edit the settings in your gateway:</h4>
+<p align="justify">VERSION, Ethernet IP and TCP_PORT can only be changed by you directly editing the settings file of the p2p.Ninja installation folder. You may do this by removing the SD card from the raspberry pi and browsing to the p2p.Ninja installation folder. This is best done in a computer that can read linux formated disks. Alternatively, if you have a monitor and keyboard attached to the raspberry pi, you should be able to use the Raspberry pi itself to log in and edit p2p.Ninja/Usersettingsandparameters/settings. This method also allows you to edit settings that are discussed here.</p>
+<table border="10">
+<tbody>
+<tr>
+<td>parameter_to_be_changed</td>
+<td>Details</td>
+<td>Additional notes</td>
+</tr>
+<tr>
+<td>SELF_PORT_PEER</td>
+<td>This is the ip address of your p2p.Ninja gateway that is visible to it's peers on the p2p.Ninja network.</td>
+<td>It is recommended that you change this settting to a Unique identifier after setting up your p2p.Ninja gateway for the first time.</td>
+</tr>
+<tr>
+<td>LOCALID</td>
+<td>A unique identifier of your installation/node of the p2p.Ninja gateway.</td>
+<td>It is recommended that you change this settting to a Unique identifier after setting up your p2p.Ninja gateway for the first time.</td>
+</tr>
+<tr>
+<td>LOCALROUTINGAID</td>
+<td>optional parameter that identifies the locality or 'local network' that this p2p.Ninja gateway is part of.</td>
+</tr>
+<tr>
+<td>LOCALIDPUBLICKEY</td>
+<td>if 'True', indicates that LOCALID value is a RSA encryption public key</td>
+</tr>
+<tr>
+<td>LOCALKEYEXPONENT</td>
+<td>only needed if LOCALIDPUBLICKEY is true.</td>
+</tr>
+<tr>
+<td>ACCEPTABLEHOPCOUNT</td>
+<td>Indicates the maximum number of hops that that a packet may have. IF the packet has more hops that this number, the packet is discarded by the router.</td>
+</tr>
+<tr>
+<td>NUMBEROFKEYSTOSAVE</td>
+<td>Indicates how many destination addresses are saved in the routing tables before older addresses (and their associated routing details) are deleted.</td>
+</tr>
+<tr>
+<td>MINIMUMINTERVALBETWEENBROADCASTS</td>
+<td>If another broadcast message is encountered from a node before this duration has elapsed, it will be ignored.</td>
+</tr>
+<tr>
+<td>NUMBEROFCONNECTIONSTOSAVE</td>
+<td>Indicates the maximum number of client connections (typically on port 80) that can be simultaneously open. If a new connection request is recieved, the oldest connection will be closed.</td>
+</tr>
+<tr>
+<td>ACCEPTABLEROUTINGPACKETSIZE</td>
+</tr>
+<tr>
+<td>ACCEPTABLEBROADCASTPACKETSIZE</td>
+</tr>
+<tr>
+<td>TIMEDELAYACCEPTABLE</td>
+<td>How old the packet can be relative to current local time. Any older packets will be discarded.</td>
+</tr>
+<tr>
+<td>PASSWORD</td>
+<td>password to change settings on this p2p.Ninja router/gateway</td>
+<td>It is recommended that you change this settting to a Unique/secret code after setting up your p2p.Ninja gateway for the first time.</td>
+</tr>
+</tbody>
+</table>
+<p>Please ensure you give IP address in the right format ( for example 192.168.3.4 ). LOCALROUTINGAID and PASSWORD may be alfanumeric, other values must be integers.  Please do not input spaces into the fields provided.<br /> <br /><br /></p>
+<p></p>
+<hr />
+
+

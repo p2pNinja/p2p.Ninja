@@ -2,17 +2,21 @@ The browser has an extension installed on itself that redirects all addresses of
 
 for example, when user types the following in the url field and enters:
 
-http://8293470928470918274.83sc4.request.p2pninja/inthisfolder/thisresource
+http://8293470928470918274.request.83sc4.p2p/inthisfolder/thisresource
 
 the browser redirects the request as follows :
 
-192.168.40.1/8293470928470918274.83sc4.request/inthisfolder/thisresource
+192.168.40.1/8293470928470918274.request.83sc4/inthisfolder/thisresource
 
-the first number  number (8293470928470918274) represents public key of destination. the second number (83sc4) represents a routing aid long. the third number (request) represents the type of request that this url is.  first field is mandatory, the second  and third is not. however, if you want to define the third number, you have to have another second number. otherwise the second value (even if last is assumed to be the routing aid). 
+
+the first number  number (8293470928470918274) represents public key of destination (can also be a non cryptographic key identifier). the second number (request) represents the packettype that this url is. the third number (83sc4) represents the routing aid.  first field is mandatory, the second  and third is not. however, if you want to define the third number, you have to have another second number. otherwise the second value (even if the last is assumed to be the packettype). 
+
+if the first character of the destination key is '~', the destination id publickey will be set to false (that is the destination key is not a cryptographic RSA key)
 
 type of request : request- direct request to server
                 : hash - request for  a stored page with hash value as mentioned in the resource path.
                 : broadcast - declaration of node
+                :
 
 ******************************************************************************************************
 
@@ -124,7 +128,8 @@ def str2int(s):
     chars = "".join(str(n) for n in range(10)) + "bcdfghjklmpqrvwxyz"
     # we have saved the five vowels and TNS for costumization
     i = 0
-    for c in reversed(s):
+    print(chars)
+    for c in (s):
         if c in chars:
             i *= len(chars)
             i += chars.index(c)
@@ -139,9 +144,10 @@ def int2str(i):
     while i:
         s += chars[i % len(chars)]
         i //= len(chars)
-    return s
+    string = s[::-1]
+    return (string)
 
 
 
-basically - the webadres can have any/all/as many of the digits and english small case letters except a,e,i,o,u,s,t,n
-if there are any ohter characters or above excluded characters, they are simply ignored by the algorithm. this allows creating of webaddresses that are more easily memorable by a person.
+
+basically - the web-address can have any/all/as many of the digits and english small case letters except a,e,i,o,u,s,t,n. All non english alphabet characters, non digit characters as well as a,e,i,o,u,s,t,n are simply ignored by the algorithm. this allows creating of webaddresses that are more easily memorable by a person.
